@@ -1,0 +1,21 @@
+package br.com.matheusvictor.gremio.entity;
+
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "TBL_CANDIDATO")
+public class Candidato {
+
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(name = "ID_FILME")
+    private Long id;
+
+    @Column(name = "TX_NOME")
+    private String nome;
+}
