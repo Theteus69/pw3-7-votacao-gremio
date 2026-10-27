@@ -1,6 +1,7 @@
 package br.com.matheusvictor.gremio.entity;
 
 
+import br.com.matheusvictor.gremio.enums.SimNaoEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,5 +27,5 @@ public class Candidato {
     private Integer quantidadeVotos;
 
     @Column(name = "CHK_ELEITO")
-    private String eleito;
+    private SimNaoEnum eleito;
 }
