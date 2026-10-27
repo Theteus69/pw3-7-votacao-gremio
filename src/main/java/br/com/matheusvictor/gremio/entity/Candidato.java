@@ -18,4 +18,13 @@ public class Candidato {
 
     @Column(name = "TX_NOME")
     private String nome;
+
+    @Column(name = "TP_CATEGORIA")
+    private String categoria;
+
+    @Column(name = "NR_QUANTIDADEVOTOS")
+    private Integer quantidadeVotos;
+
+    @Column(name = "CHK_ELEITO")
+    private String eleito;
 }
