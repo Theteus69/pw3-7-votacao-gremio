@@ -12,4 +12,4 @@ CREATE TABLE TBL_CANDIDATO (
 );
 
 
-
+Teste
