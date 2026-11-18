@@ -17,7 +17,7 @@ public class CandidatoController {
     @Autowired
     private CandidatoService candidatoService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<Candidato> findAll() {
         return candidatoService.findAll();
     }
@@ -35,7 +35,7 @@ public class CandidatoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/{id}/votar")
     public ResponseEntity<Candidato> update (@PathVariable Long id, @RequestBody Candidato candidato){
         return candidatoService.update(id, candidato)
                 .map(ResponseEntity:: ok)
