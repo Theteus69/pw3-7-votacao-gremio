@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/candidatos")
+@RequestMapping("/api/candidatos")
 @CrossOrigin("*")
 public class CandidatoController {
 
@@ -25,7 +25,14 @@ public class CandidatoController {
     @GetMapping("/{id}")
     public ResponseEntity<Candidato> findById(@PathVariable Long id) {
         return candidatoService.findById(id)
-                .map(ResponseEntity :: ok)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Candidato> update(@PathVariable Long id, @RequestBody Candidato candidato) {
+        return candidatoService.update(id, candidato)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -36,9 +43,9 @@ public class CandidatoController {
     }
 
     @PostMapping("/{id}/votar")
-    public ResponseEntity<Candidato> update (@PathVariable Long id, @RequestBody Candidato candidato){
-        return candidatoService.update(id, candidato)
-                .map(ResponseEntity:: ok)
+    public ResponseEntity<Candidato> votar(@PathVariable Long id) {
+        return candidatoService.votar(id)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -49,10 +56,5 @@ public class CandidatoController {
                 :ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Candidato> votar (@PathVariable Long id){
-        return candidatoService.votar(id)
-                .map(ResponseEntity :: ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+
 }
