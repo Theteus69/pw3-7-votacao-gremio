@@ -14,7 +14,7 @@ public class Candidato {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @Column(name = "ID_FILME")
+    @Column(name = "ID_CANDIDATO")
     private Long id;
 
     @Column(name = "TX_NOME")
@@ -26,6 +26,7 @@ public class Candidato {
     @Column(name = "NR_QUANTIDADEVOTOS")
     private Integer quantidadeVotos;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "CHK_ELEITO")
     private SimNaoEnum eleito;
 }
