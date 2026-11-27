@@ -7,4 +7,6 @@ import java.util.List;
 public interface CandidatoRepository extends JpaRepository<Candidato, Long> {
     List<Candidato> findAllByOrderByQuantidadeVotosDesc();
     List<Candidato> findByCategoria(String categoria);
+    boolean existsByNomeIgnoreCaseAndCategoria(String nome, String categoria);
+    boolean existsByNomeIgnoreCaseAndCategoriaAndIdNot(String nome, String categoria, Long id);
 }

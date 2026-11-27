@@ -27,6 +27,7 @@ public class Candidato {
     private Integer quantidadeVotos;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "CHK_ELEITO")
-    private SimNaoEnum eleito;
+    @Column(name = "CHK_ELEITO", length = 1)
+    private SimNaoEnum eleito = SimNaoEnum.N;
+
 }

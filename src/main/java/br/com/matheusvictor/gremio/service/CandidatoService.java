@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import br.com.matheusvictor.gremio.exception.RegraNegocio;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,9 @@ public class CandidatoService {
         }
 
         public Candidato create(Candidato candidato) {
+            if (candidatoRepository.existsByNomeIgnoreCaseAndCategoria(candidato.getNome(), candidato.getCategoria())) {
+                throw new RegraNegocio("Já existe um candidato com esse nome nesta categoria.");
+            }
             candidato.setId(null);
             candidato.setQuantidadeVotos(0);
             candidato.setEleito(SimNaoEnum.N);
@@ -37,6 +41,10 @@ public class CandidatoService {
 
         @Transactional
         public Optional<Candidato> update(Long id, Candidato dados) {
+            if (candidatoRepository.existsByNomeIgnoreCaseAndCategoriaAndIdNot(dados.getNome(), dados.getCategoria(), id)) {
+                throw new RegraNegocio("Já existe um candidato com esse nome nesta categoria.");
+            }
+
             return candidatoRepository.findById(id).map(candidato -> {
                 String categoriaAntiga = candidato.getCategoria();
                 candidato.setNome(dados.getNome());
